@@ -1,0 +1,19 @@
+"""CLI module for {{ method_name }} method."""
+import os
+from .{{ method_name_lower }}_interface import {{ method_class_name }}
+
+
+def main() -> None:
+    """Run the {{ method_name }} method simulation."""
+    # JSON path in the uploads folder. This variable is set for the
+    # container when it is started up.
+    json_file_path = os.environ.get("JSON_PATH")
+
+    print(f"Running {{ method_name }} method with JSON_PATH={json_file_path}")
+    {{ method_name_lower }}_method_object = {{ method_class_name }}(json_file_path)
+    {{ method_name_lower }}_method_object.run_simulation()
+
+    # Save the results to a separate file
+    {{ method_name_lower }}_method_object.save_results()
+
+    print("{{ method_name }} container finished.")

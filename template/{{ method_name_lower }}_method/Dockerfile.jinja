@@ -1,0 +1,22 @@
+FROM python:{{ python_version_min }}.13-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies for mesh generation and scientific computing
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    gmsh \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy method package directory
+COPY {{ method_name_lower }}_method /app/{{ method_name_lower }}_method
+
+# Install the method package
+RUN pip install --no-cache-dir /app/{{ method_name_lower }}_method
+
+WORKDIR /app/{{ method_name_lower }}_method
+
+# Default command to run the containerized {{ method_name }} method
+CMD ["python", "-m", "{{ method_name_lower }}_interface"]

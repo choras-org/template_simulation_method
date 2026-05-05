@@ -1,0 +1,78 @@
+[project]
+name = "{{ method_name_lower }}_interface"
+version = "0.1.0"
+description = "{{ method_description }}"
+requires-python = ">={{ python_version_min }}{% if python_version_max %},<{{ python_version_max }}{% endif %}"
+authors = [
+    { name = "{{ author_name }}", email = "{{ author_email }}" },
+]
+keywords = [
+{% for keyword in method_keywords.split(',') %}
+    "{{ keyword.strip() }}",
+{% endfor %}
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+{% if python_version_min %}
+    "Programming Language :: Python :: {{ python_version_min }}",
+{% endif %}
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+{% if not python_version_max or python_version_max >= "3.14" %}
+    "Programming Language :: Python :: 3.14",
+{% endif %}
+]
+dependencies = [
+{% for dep in additional_dependencies.split(',') %}
+    "{{ dep.strip() }}",
+{% endfor %}
+    "requests",
+    "gmsh",
+]
+
+[project.optional-dependencies]
+deploy = [
+    "twine",
+    "wheel",
+    "build",
+    "setuptools",
+    "bump-my-version",
+]
+
+tests = [
+    "pytest",
+    "pytest-cov",
+    "watchdog",
+    "ruff",
+    "coverage",
+]
+
+docs = [
+    "sphinx",
+    "autodocsumm>=0.2.14",
+    "pydata-sphinx-theme",
+    "sphinx_mdinclude",
+    "sphinx-design",
+    "sphinx-favicon",
+    "sphinx-reredirects",
+]
+
+dev = ["{{ method_name_lower }}_interface[deploy,tests,docs]"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["{{ method_name_lower }}_interface"]
+
+[project.scripts]
+{{ method_name_lower }}_interface = "{{ method_name_lower }}_interface:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

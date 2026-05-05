@@ -1,0 +1,65 @@
+---
+_subdirectory: template
+
+method_name:
+  type: str
+  help: What is the name of your simulation method (e.g., "DG", "DE", "pyroomacoustics")?
+  placeholder: "MySimMethod"
+
+method_name_lower:
+  type: str
+  help: What is the lowercase (snake_case) version of your method name (used for package naming)?
+  default: "{{ method_name.lower() }}"
+
+method_description:
+  type: str
+  help: Brief description of your simulation method
+  placeholder: "Python package for acoustic simulation using {{ method_name }}."
+
+method_keywords:
+  type: str
+  help: Comma-separated keywords for your method
+  default: "acoustic simulation, geometrical acoustics"
+
+author_name:
+  type: str
+  help: Author name
+  default: "Your Name"
+
+author_email:
+  type: str
+  help: Author email
+  default: "your.email@example.com"
+
+method_class_name:
+  type: str
+  help: Name of the main method class (e.g., "DGMethod", "DEMethod")
+  default: "{{ method_name }}Method"
+
+python_version_min:
+  type: str
+  help: Minimum Python version required (e.g., "3.11")
+  default: "3.11"
+
+python_version_max:
+  type: str
+  help: Maximum Python version (leave empty for no upper limit, or use "3.14")
+  default: ""
+
+additional_dependencies:
+  type: str
+  help: Additional dependencies (comma-separated, e.g., "numpy>=1.23.0,pandas>=2.2.0")
+  default: "numpy>=1.23.0"
+
+_tasks:
+  - command: echo "Simulation method template created successfully!"
+  - command: echo "Package location{{ ':' }} {{ method_name_lower }}_method/{{ method_name_lower }}_interface"
+  - command: echo "Test location{{ ':' }} {{ method_name_lower }}_method/tests"
+  - command: echo ""
+  - command: echo "Next steps{{ ':' }}"
+  - command: echo "Update pyproject.toml with your specific dependencies"
+  - command: echo "Edit {{ method_name_lower }}_interface/{{ method_name_lower }}_interface.py to implement your simulation logic"
+  - command: echo "Edit {{ method_name_lower }}_interface/__cli__.py to implement the command line interface used to run your method"
+  - command: echo "If you don't need .msh files, remove test_room_{{ method_name_lower }}.msh and update tests"
+  - command: echo "Run tests{{ ':' }} pytest tests/"
+  - command: echo "Update the Dockerfile in case you need additional system dependencies"
