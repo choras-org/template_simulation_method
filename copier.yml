@@ -1,6 +1,16 @@
 ---
 _subdirectory: template
 
+author_name:
+  type: str
+  help: Author name
+  default: "Your Name"
+
+author_email:
+  type: str
+  help: Author email
+  default: "your.email@example.com"
+
 method_name:
   type: str
   help: What is the name of your simulation method (e.g., "DG", "DE", "pyroomacoustics")?
