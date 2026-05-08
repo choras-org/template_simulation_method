@@ -67,3 +67,43 @@ and dependencies
 **Note:** The template always includes `*.msh` and `*.geo` files (named `test_room_<method_name_lower>.*`) and `gmsh` as a dependency. Simply remove the `.msh` file if your method automatically generates mesh files based on the geometry data defined in the `*.geo` file.
 
 **About gmsh initialization:** If your method requires `gmsh.initialize()` and `gmsh.finalize()`, add them in your simulation method implementation (not in the CLI). This keeps the CLI simple and allows better control over gmsh lifecycle.
+
+### Example
+
+```bash
+$ copier copy simulation_method_template/ ./
+
+🎤 Author name
+   Your Name
+🎤 Author email
+   your.email@example.com
+🎤 What is the name of your simulation method (e.g., "DG", "DE", "Pyroomacoustics")?
+   MyMethod
+🎤 What is the lowercase (snake_case) version of your method name (used for package naming)?
+   mymethod
+🎤 Brief description of your simulation method
+   Python package for acoustic simulation using MyMethod
+...
+```
+
+This will create a directory structure like:
+
+```bash
+mymethod_method/
+├── Dockerfile
+├── pyproject.toml
+├── mymethod_interface/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── __cli__.py
+│   ├── definition.py
+│   └── mymethod_interface.py
+└── tests/
+    ├── conftest.py
+    ├── test_definition.py
+    ├── test_mymethod_cli.py
+    ├── test_fixtures.py
+    ├── test_input_mymethod.json
+    └── test_room_mymethod.geo
+```
+
