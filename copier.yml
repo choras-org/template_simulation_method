@@ -31,16 +31,6 @@ method_keywords:
   help: Comma-separated keywords for your method
   default: "acoustic simulation, geometrical acoustics"
 
-author_name:
-  type: str
-  help: Author name
-  default: "Your Name"
-
-author_email:
-  type: str
-  help: Author email
-  default: "your.email@example.com"
-
 method_class_name:
   type: str
   help: Name of the main method class (e.g., "DGMethod", "DEMethod")
