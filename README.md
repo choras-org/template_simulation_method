@@ -33,13 +33,7 @@ uv tool install copier
 From the `simulation-backend` directory, run:
 
 ```bash
-copier copy simulation_method_template/ ./
-```
-
-Or from anywhere:
-
-```bash
-copier copy path/to/simulation_method_template/ path/to/output/
+copier copy https://github.com/choras-org/template_simulation_method ./
 ```
 
 ### Questions You'll Be Asked
