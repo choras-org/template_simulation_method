@@ -4,12 +4,12 @@ _subdirectory: template
 author_name:
   type: str
   help: Author name
-  default: "Your Name"
+  placeholder: "Your Name"
 
 author_email:
   type: str
   help: Author email
-  default: "your.email@example.com"
+  placeholder: "your.email@example.com"
 
 method_name:
   type: str
