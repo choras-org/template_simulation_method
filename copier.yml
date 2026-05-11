@@ -72,16 +72,3 @@ copyright_statement:
     type: str
     help: "What is the copyright statement? For example publication year, copyright holder."
     default: "{{ '%Y' | strftime }}, {{ author }}"
-
-_tasks:
-  - command: echo "Simulation method template created successfully!"
-  - command: echo "Package location{{ ':' }} {{ method_name_lower }}_method/{{ method_name_lower }}_interface"
-  - command: echo "Test location{{ ':' }} {{ method_name_lower }}_method/tests"
-  - command: echo ""
-  - command: echo "Next steps{{ ':' }}"
-  - command: echo "Update pyproject.toml with your specific dependencies"
-  - command: echo "Edit {{ method_name_lower }}_interface/{{ method_name_lower }}_interface.py to implement your simulation logic"
-  - command: echo "Edit {{ method_name_lower }}_interface/__cli__.py to implement the command line interface used to run your method"
-  - command: echo "If you don't need .msh files, remove test_room_{{ method_name_lower }}.msh and update tests"
-  - command: echo "Run tests{{ ':' }} pytest tests/"
-  - command: echo "Update the Dockerfile in case you need additional system dependencies"
